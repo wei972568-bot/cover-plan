@@ -374,7 +374,7 @@ DESIGN_CONFIGS = {
                            {'top': 180, 'left': 150, 'w': 90, 'h': 54, 'op': .85},
                            {'top': 296, 'left': 20, 'w': 70, 'h': 42, 'op': .8}),
                 'foot_px': 24, 'foot_bottom': 96, 'foot_letter': '.3em',
-                'foot_text': '綠野 · 晚風 · 逃跑計畫',      # 固定装饰文案（繁体；随 title_font 预检，
+                'foot_text': '夏日 · 光影 · 慢時光',      # 固定装饰文案（随 title_font 预检，
                                                             # fg_texts 声明；以 title_font 渲染）
                 'fg_texts': ('foot_text',),                 # font_guard 预检范围声明（设计稿 §2）
                 'meta_px': 17, 'meta_bottom': 46, 'meta_letter': '.24em',
@@ -577,7 +577,7 @@ DESIGN_CONFIGS = {
             'bub_top': 17, 'bub_right': 21, 'bub_border': 3.5, 'bub_pad_y': 18,
             'bub_pad_x': 21, 'bub_rot': 4, 'bub_shadow': '4px 6px 0 #111111',
             'bub_px': 17, 'bub_lh': 1.3, 'bub_max_w': 420,
-            'bubble_text': '太可愛了！',                       # 固定装饰文案（繁体；LXGWWenKai 预检）
+            'bubble_text': '砰！',                       # 固定装饰文案（拟声；LXGWWenKai 预检）
             # 底部黑条（bottom 24/侧 24；padding 13/18；suffix 固定装饰文案）
             'bar_bottom': 24, 'bar_side': 24, 'bar_pad_y': 13, 'bar_pad_x': 18,
             'bar_meta_px': 11, 'bar_meta_letter': '.3em', 'bar_suffix': 'POP ART',

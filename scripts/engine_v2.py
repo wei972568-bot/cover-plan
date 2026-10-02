@@ -94,7 +94,7 @@ GENRE = {
         'layout': {'shade_height_ratio':0.32,'hdr_top_px':38,'title_top_ratio':0.115,
                    'sub_gap_ratio':0.19,'toc_bottom_ratio':0.105,'caption_bottom_ratio':0.065,
                    'issueno':'RESCUE PHOTO · 影像档案','issue_meta':'ISSUE 08 · VOL. XXVI','badge':'NO.08',
-                   'toc':['一花一世界','细草微风','花间小憩','秋英有信','时光成诗'],'masthead_brand':'RESCUE PHOTO STUDY'},
+                   'toc':['本期精选','编辑手记','城市漫游','光影笔记','时光切片'],'masthead_brand':'RESCUE PHOTO STUDY'},
         'z_layers': {'bg':1,'shade':2,'masthead':5,'subject_overlap':10,'caption':20},
     },
     'bauhaus': {
@@ -133,7 +133,7 @@ GENRE = {
         'scale': {'hero_px':128,'lead_px':30,'micro_px':11,'hero_lh':1.02,'hero_letter':'0.14em','hero_shadow':'0 1px 0 rgba(255,255,255,0.85)'},
         'palette': {'primary':'#2b2b2b','accent':'#454545','point':'#9a9a9a'},
         'layout': {'mast_top_px':64,'title_right_px':80,'lead_margin_top_px':120,'poem_margin_top_px':210,
-                   'song_lines':['春 に 咲 く','花 の か を り','風 に の せ て'],'seal_chars':['春','風','一','葉']},
+                   'song_lines':['静 け さ','光 と 影','時 の 面 影'],'seal_chars':['春','風','一','葉']},
         'z_layers': {'bg':1,'masthead':20,'poem':22,'seal':25},
     },
     'monumental': {
@@ -196,7 +196,7 @@ GENRE = {
         'fonts': {'hero':'CinzelBold','data':'SpaceMono'},
         'scale': {'hero_px':300,'lead_px':30,'micro_px':11,'hero_lh':0.9,'hero_letter':'0.02em','hero_shadow':'0 16px 60px 12px rgba(0,0,0,0.75)'},
         'palette': {'primary':'#0d0d0f','accent':'#f2efe8','point':'#d49b6a'},
-        'layout': {'giant_word':'BUDDHA','giant_top_ratio':0.40,'giant_left_px':-80,'giant_angle':-4,
+        'layout': {'giant_word':'LAYERS','giant_top_ratio':0.40,'giant_left_px':-80,'giant_angle':-4,
                    'badge_text':'MATERIAL ARCHIVE','caption_bottom_px':60},
         'z_layers': {'bg':1,'giant':10,'photo':20,'caption':30},
     },
