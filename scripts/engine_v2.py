@@ -888,9 +888,11 @@ img.ph{{display:block;width:100%;height:100%;object-fit:cover{ph_focus}}}
     return HEAD + body + '</div></body></html>'
 
 
-# --fg-texts 消费款（argparse help / 消费判空 / 忽略警告三处共用，防文案漂移；
-# 与 SKILL 键名表〔14 键/6 键〕同源——扩款时同步 design_configs 的 layout.fixed）
-FG_TEXTS_CONSUMERS = ('exhibition_poster', 'torn_deckle')
+# --fg-texts 支持判定（2026-10-02 扩面：原固定 2 款白名单 → 能力判定）：凡 design 族 config 声明了
+# layout.fixed（固定装饰文案位）的款都可注入；键名 = 该款 layout.fixed 键名（SKILL 键名表同源）。
+# argparse help / 消费判空 / 忽略警告三处共用，防文案漂移；新款加 layout.fixed 即自动获得该能力。
+def _fg_texts_supported(genre):
+    return bool(((DESIGN_CONFIGS.get(genre) or {}).get('layout') or {}).get('fixed'))
 
 
 def _embed_fonts(html):
@@ -982,8 +984,8 @@ if __name__ == '__main__':
     p.add_argument('--words', default='',
                    help='词墙用户词（仅 collage_man 消费；逗号分隔注入词墙③层，其余流派忽略）')
     p.add_argument('--fg-texts', default='',
-                   help=f"固定装饰文案覆盖（key=词;key2=词2 分号分隔，键 = config layout.fixed 键名；"
-                        f"仅 {' / '.join(FG_TEXTS_CONSUMERS)} 消费，其余流派忽略；未知键名告警丢弃）")
+                   help=f"固定装饰文案覆盖（key=词;key2=词2 分号分隔，键 = 该款 config layout.fixed 键名；"
+                        f"凡声明了 layout.fixed 的款均可注入，其余流派忽略；未知键名告警丢弃）")
     p.add_argument('--seed', type=int, default=7)
     p.add_argument('--photo-ratio', type=float, default=None,
                    help='照片/谱线占比因子（仅 music_manuscript 载体隐喻款；默认 1.0；其它流派忽略）')
@@ -1017,7 +1019,7 @@ if __name__ == '__main__':
     # --fg-texts 固定装饰文案覆盖（2026-09-24 死词参数化 b 方案）：格式 key=词;key2=词2
     # （分号分隔，键 = 该款 config layout.fixed 内键名——未知键名告警丢弃；值去首尾空白、
     # 保留内部空格与中文〔--words 先例口径〕，值内不允许分号；HTML 转义在渲染端统一做）。
-    # 仅 FG_TEXTS_CONSUMERS 两款消费（render 内 cfg 合并，不进模板 kwargs）；
+    # 凡 config 声明了 layout.fixed 的款消费（render 内 cfg 合并，不进模板 kwargs）；
     # 其余款收到 → 显式打印提示忽略（同 --words 先例：不阻断渲染，参数语义透明）。
     fg_fixed = None
     if a.fg_texts:
@@ -1034,7 +1036,7 @@ if __name__ == '__main__':
                 continue
             _d[_k.strip()] = _v.strip()
         if _d:
-            if a.genre in FG_TEXTS_CONSUMERS:
+            if _fg_texts_supported(a.genre):
                 # 键名校验：拼错键静默失效正是本功能要消灭的图文不符 → 显式告警丢弃；
                 # 模板 .get 兜底键（如 exhibition 的 hero_sub/right_date）不在 fixed，
                 # 一并按未知键拒绝——让「键 = fixed 键名」的 help/SKILL 声明严格成立。
@@ -1044,7 +1046,7 @@ if __name__ == '__main__':
                     print(f'[engine_v2] --fg-texts 未知键名（非 {a.genre} layout.fixed 键），忽略：{"、".join(_bad)}')
                 fg_fixed = {k: v for k, v in _d.items() if k in _known} or None
             else:
-                print(f'[engine_v2] --fg-texts 仅 {" / ".join(FG_TEXTS_CONSUMERS)} 消费，{a.genre} 忽略 {len(_d)} 键')
+                print(f'[engine_v2] --fg-texts：{a.genre} 无固定装饰文案位（layout.fixed），忽略 {len(_d)} 键')
     # 落点背景亮度（分析像素所得，经 render 传入三族引擎与核心款；失败回退 None → 双影兜底）
     bg_luma = _bg_luma_for(a.photo)
     if a.genre in MATTING_CONFIGS:

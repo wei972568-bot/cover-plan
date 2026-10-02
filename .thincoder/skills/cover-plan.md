@@ -182,9 +182,13 @@ python scripts/engine_v2.py \
 chrome --headless --screenshot=cover_<genre>.png --window-size=900,1200 cover_<genre>.html
 ```
 - **固定装饰文案注入 `--fg-texts`**（格式 `key=词;key2=词2`：分号分隔、键名 = config `layout.fixed` 键、值可含中文与空格但不含分号；未知键名打印警告并丢弃；只改本次出图、不动 config 默认词；标「兜底」的键在对应参数有值时被参数顶掉、注入不渲）：
+  - **支持范围（2026-10-02 扩面：原 2 款白名单 → 能力判定）**：凡 config 声明了 `layout.fixed` 的款都可注入，现役 5 款：
   - **exhibition_poster（14 键）**：`badge_logo` 左上徽标馆名英文 · `badge_sub` 徽标下行英文 · `left_meta_top` 左翼上注记 · `left_name` 左翼竖排大字人名 · `left_role` 左翼竖排小字身份 · `left_meta_bot` 左翼下注记 · `right_name` 右翼竖排大字人名 · `right_role` 右翼竖排小字身份 · `right_tag` 右翼朱砂红竖排展签 · `f_title` 底栏左·展览标题 · `f_desc` 底栏左·展览副描述 · `f_hours` 底栏中·开放时间（含休馆日） · `f_venue` 底栏右·展馆（兜底：`--location` 有值渲 location） · `f_adm` 底栏右·票务信息
   - **torn_deckle（6 键）**：`lead_en` 标题纸片英文引题（兜底：`--sub` 有值渲 sub） · `micro` 标题纸片微标行（兜底：`--date` 有值渲 date） · `note` 左下手记纸片中文句 · `note_meta` 手记纸片元数据行 · `stamp` 骑线圆戳编号 · `strip` 左下牛皮纸条文案
-  - ⚠️ **默认词义务与预检边界（2026-09-25 审查补充）**：exhibition 默认装饰词是**引擎占位词**（含 TOKYO/KYOTO/安藤忠雄 等真实城名人名，缺省渲染保留为契约）——**图中没有的实体一律 `--fg-texts` 按图覆盖**（与「词必须对图」同口径）；注入值走 fixed 装饰位**不参与缺字预检**（无兜底 span），生僻字可能缺字直渲——常规用字无虞。
+  - **torn_peephole（3 键）**：`sub` 英文副题 · `lead` 破洞口手记中文句 · `micro` 微标行
+  - **modern_spread（5 键）**：`meta_mid` 中段元数据行 · `feat_bold` 特稿粗标 · `feat_thin` 特稿细标 · `issued` 期号标签 · `deck` 导语行
+  - **cultural_journal（10 键）**：`eyebrow` 眉标英文 · `sub` 副标 · `caption` 图注英文 · `note_en` 手记英文 · `note_cn` 手记中文 · `postmark_city` 邮戳城市 · `postmark_country` 邮戳国家 · `emboss_l1` / `emboss_l2` 钢印两行
+  - ⚠️ **默认词义务与预检边界（2026-09-25 审查补充 · 2026-10-02 扩款）**：exhibition_poster / modern_spread / cultural_journal 的默认装饰词是**引擎占位词**，多半含真实或具体实体（TOKYO / KYOTO / 安藤忠雄 · JIANGNAN 水乡 · 古镇 GUZHEN 等，缺省渲染保留为契约）——**图中没有的实体一律 `--fg-texts` 按图覆盖**（与「词必须对图」同口径）；注入值走 fixed 装饰位**不参与缺字预检**（无兜底 span），生僻字可能缺字直渲——常规用字无虞。
 - 想让"流派布局"贴合某个非默认拓扑 → 可加 `--topology <id> --material <mat>`（engine 支持，但**默认即最优**，非必要不加）。
 - 给用户成品图路径 + 说明用了哪个 genre / 为什么（识图依据）。想换风格 → 问用户换 genre / 标题 / 副标。
 
