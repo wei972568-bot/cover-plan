@@ -1,0 +1,4 @@
+# cover-plan 运行依赖（零 npm 依赖；Pillow 用于像素分析与截图转存，fontTools 用于 font_guard 缺字预检与 --embed-fonts 子集内嵌，brotli 用于 woff2 编码）
+Pillow>=10.0
+fonttools>=4.53
+brotli

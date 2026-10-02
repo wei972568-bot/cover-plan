@@ -1,0 +1,106 @@
+# ============================================================
+# cover-plan · 本地 git 仓库（2026-09-11 建立）
+#
+# 策略：本文件是「黑名单安全网」——精确排除探针产物/第三方素材/缓存，
+#       使 git add -A 也安全；实际入库由显式白名单路径 add 完成。
+# 仓库目标：源码 + 设计文档（≈6MB），不含可再生的渲染产物。
+# ============================================================
+
+# ---- 1. 探针与渲染产物（可再生产，约 520MB）----
+examples/_design_probes/
+examples/_design_new/
+examples/_composition_probes/
+examples/_nine_grid_red/
+examples/_font_new/
+examples/_pool11_0902/
+examples/_bottom_family_v2/
+examples/_landscape_check/
+examples/_bottom_family_probes/
+examples/_composition_demo/
+examples/_font_candidates/
+examples/_canyon_0830/
+examples/_baseline_exhi/
+examples/_baseline_34/
+examples/_baseline_del/
+examples/_baseline_regress/
+_bp_out/
+_bp_reg/
+_bp_cli/
+新建文件夹/
+
+# ---- 2. examples/ 根目录散落样张（仅 _vq 夹具入库）----
+/examples/*.jpg
+/examples/*.png
+/examples/*.html
+/examples/*.json
+/examples/*.log
+
+# ---- 3. 第三方文档配图（CC BY 4.0，可重下）----
+# 校正清单 docs/assets/composition_refs/README.md 仍入库（不可再生）
+docs/assets/composition_refs/*.png
+
+# ---- 4. 根目录试验样张与临时数据 ----
+/*.jpg
+/*.png
+/_*.json
+/_tmp_*.txt
+
+# ---- 5. 临时/探针脚本 ----
+/.tmp_*.py
+/_probe_*.py
+/_tmp_*.py
+
+# ---- 6. 缓存 ----
+__pycache__/
+*.pyc
+.ruff_cache/
+
+# ---- 7. 迁移工作区（engine_v2.original.bak 已留档至 _archive/，见 _archive/README.md）----
+_migrate/
+
+# ---- 8. scripts/ 内迁移遗留孤儿样张（全仓无引用，2026-09-11 移出索引）----
+/scripts/v2_bb5fb62d.jpg
+/scripts/v2_15e86504.jpg
+/scripts/v2_96db4bf9.jpg
+
+# ---- 9. 项目记忆（本机私有 · 不进开源仓库，2026-09-24 用户裁定 1a）----
+.thincoder/memory/
+
+# ---- 11. 示例图工作区（源图 + 9 宫格渲染件 + 临时脚本，不入库；
+#         README showcase 精选件已复制到 docs/assets/showcase/ 单独入库）----
+示例图/
+
+# ---- 12. 内部过程资产（不进公开仓 · 2026-10-02 用户裁定「发布出去的东西要干净」）----
+#     本机文件保留，仅不公开：方法论 / 蓝图 / 过程设计稿 / 批次流水 / 测试记录 / 交接 / 需求池 / 探针
+METHODOLOGY.md
+PROJECT_BLUEPRINT.md
+PROJECT-MANIFEST.json
+_archive/
+examples/
+docs/batches/
+docs/assets/composition_refs/
+docs/*-设计.md
+docs/微调批*.md
+docs/新款入库批*.md
+docs/测试文档-*.md
+docs/交接摘要.md
+docs/TODO.md
+docs/ENGINE-v2-design.md
+docs/拓扑结构库设计.md
+docs/读图定制方法论.md
+docs/蓝图补齐流派设计.md
+docs/装裱影格流派设计.md
+docs/载体隐喻流派设计.md
+docs/印章自定义设计.md
+docs/家族引擎镜头定位回退设计.md
+docs/展览海报-探针交接.md
+docs/渲染质检工具-设计.md
+docs/纸饰增强-设计.md
+docs/装裱自适应与vogue_bottom-设计.md
+docs/迁移设计-cover-plan-HDD到SSD.md
+.thincoder/checklist.md
+.thincoder/checklist-done.md
+.thincoder/conventions.json
+#     引擎目录只公开正体脚本；下划线前缀的开发探针/一次性脚本不公开
+scripts/_*
+!scripts/_test_modern_cultural.py
